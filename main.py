@@ -3,8 +3,8 @@ from rtlsdr import *
 from UI import show_ui
 from operator import itemgetter
 
-center_freq, sample_rate, gain = \
-    itemgetter('center_freq', 'sample_rate', 'gain')(show_ui())
+center_freq, sample_rate, gain, bandwidth = \
+    itemgetter('center_freq', 'sample_rate', 'gain', 'bandwidth')(show_ui())
 
 device_index = RtlSdr.get_device_index_by_serial('00000001')
 sdr = RtlSdr(device_index)
@@ -12,6 +12,7 @@ sdr = RtlSdr(device_index)
 # configure device
 sdr.sample_rate = sample_rate
 sdr.center_freq = center_freq
+sdr.bandwidth = bandwidth
 sdr.gain = gain
 
 samples = sdr.read_samples(256*1024)
