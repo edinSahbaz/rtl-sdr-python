@@ -15,10 +15,12 @@ def show_ui():
 
     center_freq = float(input('Unesite centralnu frekvenciju u MHz:\n')) * 10e5
     sample_rate = float(input('Unesite širinu uzorka u MHz:\n')) * 10e5
+    gain = float(input('Unesite dobitak na prijemniku:\n'))
 
     return_values = {
         'center_freq': center_freq,
-        'sample_rate': sample_rate
+        'sample_rate': sample_rate,
+        'gain': gain
     }
 
     return return_values
