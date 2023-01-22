@@ -1,4 +1,3 @@
-import asyncio
 from matplotlib.pyplot import *
 
 
@@ -13,6 +12,4 @@ async def streaming(sdr):
 
     # to stop streaming:
     await sdr.stop()
-
-    # done
     sdr.close()

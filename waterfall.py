@@ -3,8 +3,8 @@ import numpy as np
 from PIL import Image
 import pygame
 
-DISPLAY_WIDTH = 256
-DISPLAY_HEIGHT = 200
+DISPLAY_WIDTH = 800
+DISPLAY_HEIGHT = 600
 
 
 def show_waterfall(sdr):
@@ -30,7 +30,7 @@ def show_waterfall(sdr):
             imagelist.append(mymap(dat, min_pow, max_pow, 0, 255))
         image.append(imagelist[round(len(
             imagelist) / 2) - round(len(imagelist) / 8): round(len(imagelist) / 2) + round(len(imagelist) / 8)])
-        if len(image) > 200:
+        if len(image) >= 200:
             image.pop(0)
 
     def mymap(x, in_min, in_max, out_min, out_max):
@@ -47,9 +47,6 @@ def show_waterfall(sdr):
     game_quit = False
 
     while not game_quit:
-
-        gameDisplay.blit(background, (0, 0))
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_quit = True
@@ -58,12 +55,15 @@ def show_waterfall(sdr):
         outimage = np.array(image, np.ubyte)
         outimage = Image.fromarray(outimage, mode='L')
         outimage = outimage.convert('RGBA')
+        outimage = outimage.resize((DISPLAY_WIDTH, DISPLAY_HEIGHT), resample=Image.LANCZOS)
         strFormat = 'RGBA'
         raw_str = outimage.tobytes("raw", strFormat)
         surface = pygame.image.fromstring(raw_str, outimage.size, 'RGBA')
+        surface = pygame.transform.scale(surface, (DISPLAY_WIDTH, DISPLAY_HEIGHT))
         gameDisplay.blit(surface, (0, 0))
         pygame.display.update()
         clock.tick(60)
+        gameDisplay.blit(surface, (0, 0))
 
     pygame.quit()
 
