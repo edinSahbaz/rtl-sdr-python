@@ -1,9 +1,13 @@
-from ui import intro, sdr_setup, choose_mode
-import numpy as np
+from ui import intro, check_devices, sdr_setup, choose_mode
 
 
 def main():
     intro()
+    devices_found = check_devices()
+
+    if not devices_found:
+        return
+
     sdr = sdr_setup()
     choose_mode(sdr)
 

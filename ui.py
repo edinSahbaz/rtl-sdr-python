@@ -12,9 +12,18 @@ def intro():
 
     print(antena)
 
+
+def check_devices() :
     serial_numbers = RtlSdr.get_device_serial_addresses()
-    print('\nPronadjeni uredjaji (serijski brojevi):')
+
+    if len(serial_numbers) == 0:
+        print('Spojite RTL-SDR uredjaj...')
+        return False
+
+    print('\nPronadjeni uredjaji:')
     print(serial_numbers, '\n')
+
+    return True
 
 
 def sdr_setup():

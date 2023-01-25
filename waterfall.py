@@ -3,8 +3,8 @@ import numpy as np
 from PIL import Image
 import pygame
 
-DISPLAY_WIDTH = 800
-DISPLAY_HEIGHT = 600
+DISPLAY_WIDTH = 500
+DISPLAY_HEIGHT = 500
 
 
 def show_waterfall(sdr):
